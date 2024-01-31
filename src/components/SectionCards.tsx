@@ -1,55 +1,13 @@
-import { useState } from 'react';
-import Card from './cards/Card';
+import { useContext, useState } from 'react';
+import Card from './Card';
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
-
-type SectionCardsProps = {
-  id: number;
-  imgUrl: string;
-  product: string;
-  price: number;
-};
-
-const cards: SectionCardsProps[] = [
-  {
-    id: 1,
-    imgUrl: '../shirt.svg',
-    product: 'Camisa Beyond the Limits',
-    price: 79.9,
-  },
-  {
-    id: 2,
-    imgUrl: '../shirt2.svg',
-    product: 'Camisa Beyond the Limits',
-    price: 90.0,
-  },
-  {
-    id: 3,
-    imgUrl: '../shirt2.svg',
-    product: 'Camisa Beyond the Limits',
-    price: 90.0,
-  },
-  {
-    id: 4,
-    imgUrl: '../shirt2.svg',
-    product: 'Camisa Beyond the Limits',
-    price: 90.0,
-  },
-  {
-    id: 5,
-    imgUrl: '../shirt.svg',
-    product: 'Camisa Beyond the Limits',
-    price: 79.9,
-  },
-  {
-    id: 6,
-    imgUrl: '../shirt2.svg',
-    product: 'Camisa Beyond the Limits',
-    price: 90.0,
-  },
-];
+import { UserContext } from '../hooks/UserContext';
 
 const SectionCards = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const context = useContext(UserContext);
+
+  const { cards } = context!;
 
   const prevSlide = () => {
     if (currentIndex > 0) {

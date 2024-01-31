@@ -1,4 +1,5 @@
-import Bag from '../../assets/bag.svg';
+import { useNavigate } from 'react-router-dom';
+import Bag from '../assets/bag.svg';
 
 type CardProps = {
   imgUrl: string;
@@ -7,6 +8,12 @@ type CardProps = {
 };
 
 const Card = ({ imgUrl, product, price }: CardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/shop');
+  };
+
   return (
     <div
       className="w-[350px] h-[350px] relative rounded-md"
@@ -29,7 +36,10 @@ const Card = ({ imgUrl, product, price }: CardProps) => {
             </p>
           </div>
 
-          <button className="bg-emerald-700 p-2 rounded-md">
+          <button
+            className="bg-emerald-700 p-2 rounded-md"
+            onClick={handleClick}
+          >
             <img
               src={Bag}
               alt="Icone da sacola"
