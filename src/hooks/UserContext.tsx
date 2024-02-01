@@ -52,21 +52,34 @@ interface UserContextProps {
   setCartItems: React.Dispatch<React.SetStateAction<SectionCardsProps[] | []>>;
   openNavbar: boolean;
   setOpenNavbar: React.Dispatch<React.SetStateAction<boolean>>;
+  handleAddItem: () => void;
 }
 
 export const UserContext = createContext<UserContextProps | undefined>(
   undefined
 );
 
-export const UserProvider = ({ children }: { children: ReactNode[] }) => {
+export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<SectionCardsProps[]>([]);
+
   const [openNavbar, setOpenNavbar] = useState(false);
+  const handleAddItem = (newItem: SectionCardsProps) => {
+    setCartItems([
+      ...cartItems,
+      {
+        ...newItem,
+      },
+    ]);
+  };
+
   const value = {
     cartItems,
     setCartItems,
     openNavbar,
     setOpenNavbar,
+
     cards,
+    handleAddItem,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 const Product = () => {
   const context = useContext(UserContext);
   const { id } = useParams<{ id: string }>();
-  const { cards } = context!;
+  const { cards, handleAddItem } = context!;
 
   const IdProduct = id?.replace(':', ' ');
   console.log(IdProduct);
@@ -13,8 +13,6 @@ const Product = () => {
   const productId = id ? Number(IdProduct) : 0;
 
   if (isNaN(productId) || productId < 0 || productId >= cards.length) {
-    // Lógica para lidar com um id inválido, por exemplo, redirecionar para uma página de erro
-    // console.log(productId);
     return (
       <div>
         <p>Produto não encontrado </p>
@@ -53,7 +51,10 @@ const Product = () => {
             </p>
           </div>
 
-          <button className="bg-emerald-700 hover:bg-emerald-700/75 py-4 w-full rounded-md text-base cursor-pointer">
+          <button
+            onClick={handleAddItem}
+            className="bg-emerald-700 hover:bg-emerald-700/75 py-4 w-full rounded-md text-base cursor-pointer"
+          >
             Colocar na sacola
           </button>
         </div>
