@@ -1,21 +1,21 @@
-import { useNavigate } from 'react-router-dom';
-import Bag from '../assets/bag.svg';
+import { Link } from 'react-router-dom';
+import { Handbag } from '@phosphor-icons/react';
 
 type CardProps = {
+  id: number;
   imgUrl: string;
   product: string;
   price: number;
 };
 
-const Card = ({ imgUrl, product, price }: CardProps) => {
-  const navigate = useNavigate();
-
+const Card = ({ id, imgUrl, product, price }: CardProps) => {
   const handleClick = () => {
-    navigate('/shop');
+    window.location.href = `/product/:${id}`;
   };
 
   return (
-    <div
+    <Link
+      to={`/product/:${id}`}
       className="w-[350px] h-[350px] relative rounded-md"
       style={{
         background: `url(${imgUrl})`,
@@ -40,15 +40,11 @@ const Card = ({ imgUrl, product, price }: CardProps) => {
             className="bg-emerald-700 p-2 rounded-md"
             onClick={handleClick}
           >
-            <img
-              src={Bag}
-              alt="Icone da sacola"
-              className="max-w-full w-8 block"
-            />
+            <Handbag size={30} />
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

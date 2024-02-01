@@ -1,47 +1,56 @@
-import { useContext } from 'react';
-import { UserContext } from '../hooks/UserContext';
+import { X } from '@phosphor-icons/react';
+import { useState } from 'react';
 
 const ShopCart = () => {
-  const context = useContext(UserContext);
+  const [openNavbar, setOpenNavbar] = useState(true);
 
-  const { cards } = context!;
+  const handleClick = () => {
+    setOpenNavbar(!openNavbar);
+  };
+
   return (
-    <section className="py-5">
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
-        <img src={cards[0].imgUrl} alt="" width={696} height={656} />
+    <div
+      className={`${
+        openNavbar ? 'fixed' : 'hidden'
+      } w-full max-w-96 h-screen top-0 right-0 z-30 bg-[#121212]`}
+    >
+      <div className="relative py-20 px-10 flex flex-col">
+        <button onClick={handleClick} className="absolute top-6 right-6">
+          <X size={30} />
+        </button>
 
-        <div className="p-8 flex flex-col">
-          <h1 className="text-4xl font-semibold text-gray-400 mb-4">
-            {cards[0].product}
-          </h1>
-          <p className="text-emerald-500 font-semibold text-2xl mb-6">
-            {cards[0].price.toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            })}
-          </p>
+        <h1 className="mb-4 text-lg font-semibold">Sacola de compras</h1>
 
-          <div className="flex-1 space-y-6">
-            <p className="mb-6 text-gray-300">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum
-              similique eveniet rem nihil possimus et facere asperiores minus
-              nulla sapiente? Consequatur vel iste possimus illo delectus
-              laudantium soluta exercitationem repudiandae.
-            </p>
-            <p className="text-gray-300">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum
-              similique eveniet rem nihil possimus et facere asperiores minus
-              nulla sapiente? Consequatur vel iste possimus illo delectus
-              laudantium soluta exercitationem repudiandae.
-            </p>
+        <div className="flex gap-4">
+          <img
+            src="../../public/shirt.svg"
+            alt=""
+            className="w-20 rounded-md"
+          />
+
+          <div className="space-y-2">
+            <h2 className="text-gray-400 text-base">Produto</h2>
+            <p className="text-base text-white font-semibold">R$ 79,90</p>
+            <button className="text-emerald-500 text-base">Remover</button>
+          </div>
+        </div>
+
+        <div className="absolute -bottom-64 left-6 right-6 p-4 bg-[#121212] z-20">
+          <div className="flex justify-between">
+            <p>Quantidade</p>
+            <p>3 itens</p>
+          </div>
+          <div className="flex justify-between">
+            <p className="text-lg">Valor total</p>
+            <p className="text-lg font-semibold">R$ 270,00</p>
           </div>
 
-          <button className="bg-emerald-700 hover:bg-emerald-700/75 py-4 w-full rounded-md text-base cursor-pointer">
-            Colocar na sacola
+          <button className="bg-emerald-600 py-2 rounded-md w-full">
+            Finalizar compra
           </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

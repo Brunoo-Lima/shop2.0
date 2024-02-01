@@ -42,6 +42,7 @@ const SectionCards = () => {
           {cards.map((card) => (
             <li key={card.id} className="flex items-center justify-center ">
               <Card
+                id={card.id}
                 imgUrl={card.imgUrl}
                 product={card.product}
                 price={card.price}
