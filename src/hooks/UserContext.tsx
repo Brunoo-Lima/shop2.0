@@ -1,4 +1,4 @@
-import { ReactNode, createContext } from 'react';
+import { ReactNode, createContext, useState } from 'react';
 
 type SectionCardsProps = {
   id: number;
@@ -48,14 +48,24 @@ const cards: SectionCardsProps[] = [
 
 interface UserContextProps {
   cards: SectionCardsProps[];
+  cartItems: SectionCardsProps[];
+  setCartItems: React.Dispatch<React.SetStateAction<SectionCardsProps[] | []>>;
+  openNavbar: boolean;
+  setOpenNavbar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const UserContext = createContext<UserContextProps | undefined>(
-  undefined,
+  undefined
 );
 
 export const UserProvider = ({ children }: { children: ReactNode[] }) => {
+  const [cartItems, setCartItems] = useState<SectionCardsProps[]>([]);
+  const [openNavbar, setOpenNavbar] = useState(false);
   const value = {
+    cartItems,
+    setCartItems,
+    openNavbar,
+    setOpenNavbar,
     cards,
   };
 

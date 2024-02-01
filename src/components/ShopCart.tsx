@@ -1,11 +1,21 @@
 import { X } from '@phosphor-icons/react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from '../hooks/UserContext';
+import CartItems from './CartItems';
 
 const ShopCart = () => {
-  const [openNavbar, setOpenNavbar] = useState(true);
+  const context = useContext(UserContext);
+  // const { cart, setCart } = useState([]);
+  const { cartItems, setCartItems, openNavbar, setOpenNavbar } = context!;
+  const valueTotal = cartItems.reduce((acc, item) => item.price + acc, 0);
+  const qtd = cartItems.reduce((acc) => 0 + acc, 0);
 
-  const handleClick = () => {
-    setOpenNavbar(!openNavbar);
+  const handleRemoveItem = () => {
+    const newCart = [...cartItems];
+    const filterCart = newCart.filter((item) =>
+      item.id !== cartItems[0].id ? item : null
+    );
+    setCartItems(filterCart);
   };
 
   return (
@@ -15,37 +25,46 @@ const ShopCart = () => {
       } w-full max-w-96 h-screen top-0 right-0 z-30 bg-[#121212]`}
     >
       <div className="relative py-20 px-10 flex flex-col">
-        <button onClick={handleClick} className="absolute top-6 right-6">
+        <button
+          onClick={() => setOpenNavbar(!openNavbar)}
+          className="absolute top-6 right-6"
+        >
           <X size={30} />
         </button>
 
         <h1 className="mb-4 text-lg font-semibold">Sacola de compras</h1>
 
-        <div className="flex gap-4">
-          <img
-            src="../../public/shirt.svg"
-            alt=""
-            className="w-20 rounded-md"
-          />
-
-          <div className="space-y-2">
-            <h2 className="text-gray-400 text-base">Produto</h2>
-            <p className="text-base text-white font-semibold">R$ 79,90</p>
-            <button className="text-emerald-500 text-base">Remover</button>
-          </div>
+        <div>
+          <ul className="flex flex-col space-y-2">
+            {cartItems.map((cart) => (
+              <li key={cart.id}>
+                <CartItems
+                  imgUrl={cart.imgUrl}
+                  price={cart.price}
+                  product={cart.product}
+                  handleRemoveItem={handleRemoveItem}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="absolute -bottom-64 left-6 right-6 p-4 bg-[#121212] z-20">
           <div className="flex justify-between">
             <p>Quantidade</p>
-            <p>3 itens</p>
+            <p>{qtd} itens</p>
           </div>
           <div className="flex justify-between">
             <p className="text-lg">Valor total</p>
-            <p className="text-lg font-semibold">R$ 270,00</p>
+            <p className="text-lg font-semibold">
+              {valueTotal.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+            </p>
           </div>
 
-          <button className="bg-emerald-600 py-2 rounded-md w-full">
+          <button className="bg-emerald-600 mt-4 py-2 rounded-md w-full">
             Finalizar compra
           </button>
         </div>
