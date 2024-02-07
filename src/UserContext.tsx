@@ -67,7 +67,7 @@ export const UserContext = createContext<UserContextProps | undefined>(
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [cartItems, setCartItems] = useState<CardsProps[]>([]);
+  const [cartItems, setCartItems] = useState<CardsProps[] | []>([]);
   const [dataProducts, setDataProducts] = useState<CardsProps | null>(null);
 
   const [openNavbar, setOpenNavbar] = useState(false);

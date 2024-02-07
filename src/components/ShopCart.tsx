@@ -6,14 +6,13 @@ import CartItems from './CartItems';
 const ShopCart = () => {
   const context = useContext(UserContext);
   const { cartItems, setCartItems, openNavbar, setOpenNavbar } = context!;
+
   const valueTotal = cartItems.reduce((acc, item) => item.price + acc, 0);
   const qtd = cartItems.reduce((acc) => 0 + acc, 0);
 
-  const handleRemoveItem = () => {
+  const handleRemoveItem = (id: number) => {
     const newCart = [...cartItems];
-    const filterCart = newCart.filter((item) =>
-      item.id !== cartItems[0].id ? item : null
-    );
+    const filterCart = newCart.filter((item) => (item.id !== id ? item : null));
     setCartItems(filterCart);
   };
 
@@ -35,6 +34,7 @@ const ShopCart = () => {
 
         <div>
           <ul className="flex flex-col space-y-2">
+            //TODO: EM ANDAMENTO
             {cartItems.map((cart) => (
               <li key={cart.id}>
                 <CartItems
