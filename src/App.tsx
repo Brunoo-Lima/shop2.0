@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Product from './components/Product';
 
-import { UserProvider } from './hooks/UserContext';
+import { UserProvider } from './UserContext';
 import ShopCart from './components/ShopCart';
 
 const App = () => {

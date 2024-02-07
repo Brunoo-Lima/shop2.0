@@ -1,13 +1,13 @@
 import { ReactNode, createContext, useState } from 'react';
 
-type SectionCardsProps = {
+type CardsProps = {
   id: number;
   imgUrl: string;
   product: string;
   price: number;
 };
 
-const cards: SectionCardsProps[] = [
+const cards: CardsProps[] = [
   {
     id: 1,
     imgUrl: '../shirt.svg',
@@ -46,24 +46,33 @@ const cards: SectionCardsProps[] = [
   },
 ];
 
-interface UserContextProps {
-  cards: SectionCardsProps[];
-  cartItems: SectionCardsProps[];
-  setCartItems: React.Dispatch<React.SetStateAction<SectionCardsProps[] | []>>;
+type UserContextProps = {
+  cards: CardsProps[];
+
+  cartItems: CardsProps[];
+  setCartItems: React.Dispatch<React.SetStateAction<CardsProps[] | []>>;
+
+  dataProducts: CardsProps | null;
+  // setDataProducts: React.Dispatch<React.SetStateAction<CardsProps[] | null>>;
+
   openNavbar: boolean;
   setOpenNavbar: React.Dispatch<React.SetStateAction<boolean>>;
   handleAddItem: () => void;
-}
+
+  handleOpenProduct: (product: CardsProps) => void;
+};
 
 export const UserContext = createContext<UserContextProps | undefined>(
   undefined
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [cartItems, setCartItems] = useState<SectionCardsProps[]>([]);
+  const [cartItems, setCartItems] = useState<CardsProps[]>([]);
+  const [dataProducts, setDataProducts] = useState<CardsProps | null>(null);
 
   const [openNavbar, setOpenNavbar] = useState(false);
-  const handleAddItem = (newItem: SectionCardsProps) => {
+
+  const handleAddItem = (newItem: CardsProps) => {
     setCartItems([
       ...cartItems,
       {
@@ -72,14 +81,23 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     ]);
   };
 
+  const handleOpenProduct = (product: CardsProps) => {
+    setDataProducts(product);
+  };
+
   const value = {
     cartItems,
     setCartItems,
+    dataProducts,
+    setDataProducts,
+
     openNavbar,
     setOpenNavbar,
 
     cards,
     handleAddItem,
+
+    handleOpenProduct,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

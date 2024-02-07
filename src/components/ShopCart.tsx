@@ -1,11 +1,10 @@
 import { X } from '@phosphor-icons/react';
 import { useContext, useState } from 'react';
-import { UserContext } from '../hooks/UserContext';
+import { UserContext } from '../UserContext';
 import CartItems from './CartItems';
 
 const ShopCart = () => {
   const context = useContext(UserContext);
-  // const { cart, setCart } = useState([]);
   const { cartItems, setCartItems, openNavbar, setOpenNavbar } = context!;
   const valueTotal = cartItems.reduce((acc, item) => item.price + acc, 0);
   const qtd = cartItems.reduce((acc) => 0 + acc, 0);
