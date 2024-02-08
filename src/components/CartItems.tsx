@@ -1,37 +1,26 @@
-import { useContext } from 'react';
 import { FormatCurrency } from './utilities/FormatCurrency';
-import { UserContext } from '../UserContext';
 
 type CartItemProps = {
-  id: number;
-  imgUrl: string;
-  product: string;
-  price: number;
+  carts: {
+    id: number;
+    imgUrl: string;
+    product: string;
+    price: number;
+  };
   handleRemoveItem: (id: number) => void;
 };
 
-const CartItems = ({
-  id,
-  imgUrl,
-  product,
-  price,
-  handleRemoveItem,
-}: CartItemProps) => {
-  const context = useContext(UserContext);
-  const { dataProducts } = context!;
-
+const CartItems = ({ carts, handleRemoveItem }: CartItemProps) => {
   return (
     <li className="flex gap-4">
-      <img src={imgUrl} alt="" className="w-24 rounded-md" />
+      <img src={carts.imgUrl} alt="" className="w-24 rounded-md" />
 
       <div className="space-y-2">
-        <h2 className="text-gray-400 text-base">{product}</h2>
-        <p className="text-base text-white font-semibold">
-          {FormatCurrency(price)}
-        </p>
+        <h2 className="text-gray-400 text-base">{carts.product}</h2>
+        <p className="text-base text-white font-semibold">{carts.price}</p>
         <button
           className="text-emerald-500 text-base"
-          onClick={() => handleRemoveItem(id)}
+          onClick={() => handleRemoveItem(carts.id)}
         >
           Remover
         </button>

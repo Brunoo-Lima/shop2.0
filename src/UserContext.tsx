@@ -17,32 +17,32 @@ const cards: CardsProps[] = [
   {
     id: 2,
     imgUrl: '../shirt2.svg',
-    product: 'Camisa Beyond the Limits',
+    product: 'Camiseta Explorer',
     price: 90.0,
   },
   {
     id: 3,
     imgUrl: '../shirt2.svg',
-    product: 'Camisa Beyond the Limits',
+    product: 'Camiseta Explorer',
     price: 90.0,
   },
   {
     id: 4,
     imgUrl: '../shirt2.svg',
-    product: 'Camisa Beyond the Limits',
+    product: 'Camiseta Explorer',
     price: 90.0,
   },
   {
     id: 5,
     imgUrl: '../shirt.svg',
     product: 'Camisa Beyond the Limits',
-    price: 79.9,
+    price: 62.9,
   },
   {
     id: 6,
     imgUrl: '../shirt2.svg',
-    product: 'Camisa Beyond the Limits',
-    price: 90.0,
+    product: 'Camiseta Explorer',
+    price: 89.9,
   },
 ];
 
@@ -57,13 +57,14 @@ type UserContextProps = {
 
   openNavbar: boolean;
   setOpenNavbar: React.Dispatch<React.SetStateAction<boolean>>;
-  handleAddItem: () => void;
+  handleAddItem: (newItem: CardsProps) => void;
 
   handleOpenProduct: (product: CardsProps) => void;
+  handleRemoveItem: (id: number) => void;
 };
 
 export const UserContext = createContext<UserContextProps | undefined>(
-  undefined
+  undefined,
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
@@ -76,9 +77,18 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setCartItems([
       ...cartItems,
       {
-        ...newItem,
+        id: newItem.id,
+        imgUrl: newItem.imgUrl,
+        product: newItem.product,
+        price: newItem.price,
       },
     ]);
+  };
+
+  const handleRemoveItem = (id: number) => {
+    const newCart = [...cartItems];
+    const filterCart = newCart.filter((item) => (item.id !== id ? item : null));
+    setCartItems(filterCart);
   };
 
   const handleOpenProduct = (product: CardsProps) => {
@@ -98,6 +108,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     handleAddItem,
 
     handleOpenProduct,
+    handleRemoveItem,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -40,7 +40,7 @@ const Product = () => {
           </div>
 
           <button
-            onClick={handleAddItem}
+            onClick={() => handleAddItem(dataProducts)}
             className="bg-emerald-700 hover:bg-emerald-700/75 py-4 w-full rounded-lg text-base cursor-pointer"
           >
             Colocar na sacola

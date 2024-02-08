@@ -1,20 +1,14 @@
 import { X } from '@phosphor-icons/react';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../UserContext';
 import CartItems from './CartItems';
 
 const ShopCart = () => {
   const context = useContext(UserContext);
-  const { cartItems, setCartItems, openNavbar, setOpenNavbar } = context!;
+  const { cartItems, handleRemoveItem, openNavbar, setOpenNavbar } = context!;
 
   const valueTotal = cartItems.reduce((acc, item) => item.price + acc, 0);
   const qtd = cartItems.reduce((acc) => 0 + acc, 0);
-
-  const handleRemoveItem = (id: number) => {
-    const newCart = [...cartItems];
-    const filterCart = newCart.filter((item) => (item.id !== id ? item : null));
-    setCartItems(filterCart);
-  };
 
   return (
     <div
@@ -34,15 +28,9 @@ const ShopCart = () => {
 
         <div>
           <ul className="flex flex-col space-y-2">
-            //TODO: EM ANDAMENTO
-            {cartItems.map((cart) => (
-              <li key={cart.id}>
-                <CartItems
-                  imgUrl={cart.imgUrl}
-                  price={cart.price}
-                  product={cart.product}
-                  handleRemoveItem={handleRemoveItem}
-                />
+            {cartItems.map((item, index) => (
+              <li key={index}>
+                <CartItems carts={item} handleRemoveItem={handleRemoveItem} />
               </li>
             ))}
           </ul>
