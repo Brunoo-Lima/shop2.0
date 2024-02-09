@@ -8,7 +8,8 @@ const ShopCart = () => {
   const { cartItems, handleRemoveItem, openNavbar, setOpenNavbar } = context!;
 
   const valueTotal = cartItems.reduce((acc, item) => item.price + acc, 0);
-  const qtd = cartItems.reduce((acc) => 0 + acc, 0);
+
+  const qtd = cartItems.length;
 
   return (
     <div

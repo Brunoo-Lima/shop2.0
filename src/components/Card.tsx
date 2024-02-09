@@ -16,6 +16,8 @@ const Card = ({ id, imgUrl, product, price }: CardProps) => {
 
   const { handleOpenProduct, handleAddItem } = context!;
 
+  const data = { id, imgUrl, product, price };
+
   const handleClick = () => {
     handleOpenProduct({
       id,
@@ -50,7 +52,7 @@ const Card = ({ id, imgUrl, product, price }: CardProps) => {
 
       <button
         className="bg-emerald-700 p-2 rounded-md absolute bottom-5 right-5 z-50"
-        onClick={handleAddItem}
+        onClick={() => handleAddItem(data)}
       >
         <Handbag size={30} />
       </button>

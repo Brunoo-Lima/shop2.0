@@ -7,7 +7,7 @@ const SectionCards = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const context = useContext(UserContext);
 
-  const { cards, dataProducts } = context!;
+  const { cards } = context!;
 
   const prevSlide = () => {
     if (currentIndex > 0) {

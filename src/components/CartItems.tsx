@@ -17,7 +17,9 @@ const CartItems = ({ carts, handleRemoveItem }: CartItemProps) => {
 
       <div className="space-y-2">
         <h2 className="text-gray-400 text-base">{carts.product}</h2>
-        <p className="text-base text-white font-semibold">{carts.price}</p>
+        <p className="text-base text-white font-semibold">
+          {FormatCurrency(carts.price)}
+        </p>
         <button
           className="text-emerald-500 text-base"
           onClick={() => handleRemoveItem(carts.id)}
