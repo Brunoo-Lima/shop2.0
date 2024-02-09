@@ -53,10 +53,11 @@ type UserContextProps = {
   setCartItems: React.Dispatch<React.SetStateAction<CardsProps[] | []>>;
 
   dataProducts: CardsProps | null;
-  // setDataProducts: React.Dispatch<React.SetStateAction<CardsProps[] | null>>;
+  setDataProducts?: React.Dispatch<React.SetStateAction<CardsProps | null>>;
 
   openNavbar: boolean;
   setOpenNavbar: React.Dispatch<React.SetStateAction<boolean>>;
+
   handleAddItem: (newItem: CardsProps) => void;
 
   handleOpenProduct: (product: CardsProps) => void;
@@ -98,8 +99,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const value = {
     cartItems,
     setCartItems,
+
     dataProducts,
-    setDataProducts,
 
     openNavbar,
     setOpenNavbar,

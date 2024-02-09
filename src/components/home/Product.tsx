@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { UserContext } from '../UserContext';
-import { FormatCurrency } from './utilities/FormatCurrency';
+import { UserContext } from '../../UserContext';
+import { FormatCurrency } from '../utilities/FormatCurrency';
 
 const Product = () => {
   const context = useContext(UserContext);

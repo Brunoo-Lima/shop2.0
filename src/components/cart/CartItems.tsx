@@ -1,4 +1,4 @@
-import { FormatCurrency } from './utilities/FormatCurrency';
+import { FormatCurrency } from '../utilities/FormatCurrency';
 
 type CartItemProps = {
   carts: {

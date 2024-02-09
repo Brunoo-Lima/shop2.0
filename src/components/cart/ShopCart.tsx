@@ -1,21 +1,27 @@
 import { X } from '@phosphor-icons/react';
-import { useContext } from 'react';
-import { UserContext } from '../UserContext';
+import { useContext, useState } from 'react';
+import { UserContext } from '../../UserContext';
 import CartItems from './CartItems';
+import { useNavigate } from 'react-router-dom';
 
 const ShopCart = () => {
   const context = useContext(UserContext);
   const { cartItems, handleRemoveItem, openNavbar, setOpenNavbar } = context!;
+  const navigate = useNavigate();
 
   const valueTotal = cartItems.reduce((acc, item) => item.price + acc, 0);
 
   const qtd = cartItems.length;
 
+  const handleClick = () => {
+    navigate('/order/', { state: { qtd } });
+  };
+
   return (
     <div
       className={`${
         openNavbar ? 'fixed' : 'hidden'
-      } w-full max-w-96 h-screen top-0 right-0 z-30 bg-[#121212]`}
+      } w-full max-w-96 h-screen top-0 right-0 z-30 bg-[#202024]`}
     >
       <div className="py-20 px-10 flex flex-col">
         <button
@@ -36,7 +42,7 @@ const ShopCart = () => {
         </ul>
       </div>
 
-      <div className="absolute left-0 right-0 bottom-0 py-10 px-10 bg-[#121212] border-t border-t-gray-800">
+      <div className="absolute left-0 right-0 bottom-0 py-10 px-10 bg-[#202024] border-t border-t-gray-800">
         <div className="flex justify-between">
           <p>Quantidade</p>
           <p>{qtd} itens</p>
@@ -51,7 +57,10 @@ const ShopCart = () => {
           </p>
         </div>
 
-        <button className="bg-emerald-600 mt-4 py-2 rounded-md w-full">
+        <button
+          className="bg-emerald-600 mt-4 py-2 rounded-md w-full"
+          onClick={handleClick}
+        >
           Finalizar compra
         </button>
       </div>

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Handbag } from '@phosphor-icons/react';
-import { FormatCurrency } from './utilities/FormatCurrency';
+import { FormatCurrency } from '../utilities/FormatCurrency';
 import { useContext } from 'react';
-import { UserContext } from '../UserContext';
+import { UserContext } from '../../UserContext';
 
 type CardProps = {
   id: number;

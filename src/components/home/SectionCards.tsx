@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import Card from './Card';
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
-import { UserContext } from '../UserContext';
+import { UserContext } from '../../UserContext';
 
 const SectionCards = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
