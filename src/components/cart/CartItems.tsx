@@ -22,12 +22,12 @@ const CartItems = ({ carts, handleRemoveItem }: CartItemProps) => {
       />
 
       <div className="space-y-1">
-        <h2 className="text-gray-400 text-base">{carts.product}</h2>
-        <p className="text-base text-white font-semibold">
+        <h2 className="text-text-color text-base">{carts.product}</h2>
+        <p className="text-base text-title-color font-semibold">
           {FormatCurrency(carts.price)}
         </p>
         <button
-          className="text-emerald-500 text-base"
+          className="text-primary-color hover:text-light-color text-base transition duration-300"
           onClick={() => handleRemoveItem(carts.id)}
         >
           Remover

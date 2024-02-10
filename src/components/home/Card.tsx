@@ -38,11 +38,13 @@ const Card = ({ id, imgUrl, product, price }: CardProps) => {
     >
       <Link to={`/product/${id}`} onClick={handleClick}>
         <div className="absolute w-full bottom-0 p-1 z-10">
-          <div className="bg-[#202020] flex justify-between rounded-md p-4">
+          <div className="bg-elements-color flex justify-between rounded-md p-4">
             <div>
-              <h1 className="text-white text-base font-semibold">{product}</h1>
+              <h1 className="text-title-color text-base font-semibold">
+                {product}
+              </h1>
 
-              <p className="text-emerald-500 font-semibold text-lg">
+              <p className="text-primary-color font-semibold text-lg">
                 {FormatCurrency(price)}
               </p>
             </div>
@@ -51,10 +53,10 @@ const Card = ({ id, imgUrl, product, price }: CardProps) => {
       </Link>
 
       <button
-        className="bg-emerald-700 p-2 rounded-md absolute bottom-5 right-5 z-50"
+        className="bg-primary-color hover:bg-light-color p-2 rounded-lg absolute bottom-5 right-5 z-50 transition duration-300"
         onClick={() => handleAddItem(data)}
       >
-        <Handbag size={30} />
+        <Handbag size={30} color="#ffffff" />
       </button>
     </div>
   );

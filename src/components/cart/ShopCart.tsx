@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import CartItems from './CartItems';
 import { useNavigate } from 'react-router-dom';
+import { FormatCurrency } from '../utilities/FormatCurrency';
 
 const ShopCart = () => {
   const context = useContext(UserContext);
@@ -10,13 +11,12 @@ const ShopCart = () => {
     cartItems,
     setCartItems,
     handleRemoveItem,
-    openNavbar,
-    setOpenNavbar,
+    openSidebar,
+    setOpenSidebar,
   } = context!;
   const navigate = useNavigate();
 
   const valueTotal = cartItems.reduce((acc, item) => item.price + acc, 0);
-
   const qtd = cartItems.length;
 
   const handleClick = () => {
@@ -25,29 +25,35 @@ const ShopCart = () => {
     } else {
       navigate('/order/', { state: { qtd } });
       setCartItems([]);
+      alert('Compra realizada!');
     }
   };
 
   return (
     <div
       className={`${
-        openNavbar ? 'fixed' : 'hidden'
-      } w-full max-w-[25rem] h-screen top-0 right-0 z-30 bg-[#202024]`}
+        openSidebar ? 'fixed' : 'hidden'
+      } w-full max-w-[25rem] h-screen top-0 right-0 z-30 bg-elements-color transition-transform duration-500`}
     >
       <div className="pt-20 px-10 flex flex-col h-full">
         <button
-          onClick={() => setOpenNavbar(!openNavbar)}
-          className="absolute top-5 right-6"
+          onClick={() => setOpenSidebar(!openSidebar)}
+          className="absolute top-6 right-6"
+          type="button"
         >
-          <X size={30} />
+          <X size={30} color="#8D8D99" />
         </button>
 
-        <h1 className="mb-4 text-lg font-semibold">Sacola de compras</h1>
+        <h1 className="mb-4 text-lg text-title-color font-semibold">
+          Sacola de compras
+        </h1>
 
         <div className="overflow-hidden flex-1">
           <ul className="flex flex-col h-full overflow-y-auto gap-y-2">
             {cartItems.length == 0 ? (
-              <h1 className="text-base text-center mt-28">Carrinho vazio</h1>
+              <h1 className="text-base text-text-color text-center mt-28">
+                Carrinho vazio
+              </h1>
             ) : (
               <>
                 {cartItems.map((item, index) => (
@@ -63,26 +69,25 @@ const ShopCart = () => {
           </ul>
         </div>
 
-        <div className="py-5 bg-[#202024] border-t border-t-gray-800">
+        <div className="py-5">
           <div className="flex justify-between">
-            <p className="text-base">Quantidade</p>
-            <p className="text-base">{qtd} itens</p>
+            <p className="text-base text-title-color">Quantidade</p>
+            <p className="text-base text-title-color">{qtd} itens</p>
           </div>
           <div className="flex justify-between">
-            <p className="text-base">Valor total</p>
-            <p className="text-base font-semibold">
-              {valueTotal.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              })}
+            <p className="text-base text-title-color">Valor total</p>
+            <p className="text-base font-semibold text-title-color">
+              {FormatCurrency(valueTotal)}
             </p>
           </div>
 
           <button
-            className="bg-emerald-600 mt-4 py-2 rounded-md w-full"
+            className="bg-primary-color hover:bg-light-color mt-4 py-2 rounded-md w-full transition duration-300"
             onClick={handleClick}
           >
-            Finalizar compra
+            <p className="text-white font-semibold text-base">
+              Finalizar compra
+            </p>
           </button>
         </div>
       </div>

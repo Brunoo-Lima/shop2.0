@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
-import Card from './Card';
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { UserContext } from '../../UserContext';
+import Card from './Card';
 
 const SectionCards = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,8 +29,8 @@ const SectionCards = () => {
   };
 
   return (
-    <div className="py-20 overflow-hidden">
-      <h1 className="text-center text-3xl font-semibold mb-4">
+    <div className="pt-16 overflow-hidden">
+      <h1 className="text-title-color text-center text-3xl font-semibold mb-4">
         Escolha um produto
       </h1>
 
@@ -54,23 +54,23 @@ const SectionCards = () => {
         <button
           className={`absolute ${
             currentIndex === 0 ? 'hidden' : ''
-          }   bg-black/50 left-0 top-[50%] -translate-x-0 translate-y-[-50%] w-20 h-full cursor-pointer`}
+          }   bg-base-color/50 left-0 top-[50%] -translate-x-0 translate-y-[-50%] w-20 h-full cursor-pointer`}
           onClick={prevSlide}
         >
           <CaretLeft
             size={30}
-            className="absolute top-[50%] right-6 text-white cursor-pointer"
+            className="absolute top-[50%] right-6 text-icon-color cursor-pointer"
           />
         </button>
         <button
           className={`absolute ${
             currentIndex === cards.length - 1 ? 'hidden' : ''
-          } bg-black/50 right-0 top-[50%] -translate-x-0 translate-y-[-50%] w-20 h-full cursor-pointer`}
+          } bg-base-color/50 right-0 top-[50%] -translate-x-0 translate-y-[-50%] w-20 h-full cursor-pointer`}
           onClick={nextSlide}
         >
           <CaretRight
             size={30}
-            className="absolute top-[50%] left-6 text-white cursor-pointer"
+            className="absolute top-[50%] left-6 text-icon-color cursor-pointer"
           />
         </button>
       </div>

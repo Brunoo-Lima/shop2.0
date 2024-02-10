@@ -55,8 +55,8 @@ type UserContextProps = {
   dataProducts: CardsProps | null;
   setDataProducts?: React.Dispatch<React.SetStateAction<CardsProps | null>>;
 
-  openNavbar: boolean;
-  setOpenNavbar: React.Dispatch<React.SetStateAction<boolean>>;
+  openSidebar: boolean;
+  setOpenSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 
   handleAddItem: (newItem: CardsProps) => void;
 
@@ -65,14 +65,14 @@ type UserContextProps = {
 };
 
 export const UserContext = createContext<UserContextProps | undefined>(
-  undefined,
+  undefined
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CardsProps[] | []>([]);
   const [dataProducts, setDataProducts] = useState<CardsProps | null>(null);
 
-  const [openNavbar, setOpenNavbar] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   const handleAddItem = (newItem: CardsProps) => {
     setCartItems([
@@ -84,6 +84,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         price: newItem.price,
       },
     ]);
+    alert('Item adicionado com Sucesso!');
   };
 
   const handleRemoveItem = (id: number) => {
@@ -102,8 +103,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     dataProducts,
 
-    openNavbar,
-    setOpenNavbar,
+    openSidebar,
+    setOpenSidebar,
 
     cards,
     handleAddItem,
