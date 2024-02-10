@@ -12,7 +12,8 @@ const OrderConfirmed = () => {
         </h1>
 
         <p className="font-normal text-2xl text-center mb-20">
-          Uhuul, sua compra de {qtd} camisetas já está a caminho da sua casa.
+          Uhuul, {qtd == 1 ? `${qtd} camiseta` : `${qtd} camisetas`} está a
+          caminho da sua casa.
         </p>
 
         <Link
