@@ -6,7 +6,13 @@ import { useNavigate } from 'react-router-dom';
 
 const ShopCart = () => {
   const context = useContext(UserContext);
-  const { cartItems, handleRemoveItem, openNavbar, setOpenNavbar } = context!;
+  const {
+    cartItems,
+    setCartItems,
+    handleRemoveItem,
+    openNavbar,
+    setOpenNavbar,
+  } = context!;
   const navigate = useNavigate();
 
   const valueTotal = cartItems.reduce((acc, item) => item.price + acc, 0);
@@ -14,7 +20,12 @@ const ShopCart = () => {
   const qtd = cartItems.length;
 
   const handleClick = () => {
-    navigate('/order/', { state: { qtd } });
+    if (cartItems.length == 0) {
+      alert('Carrinho de compra vazio!');
+    } else {
+      navigate('/order/', { state: { qtd } });
+      setCartItems([]);
+    }
   };
 
   return (
@@ -35,11 +46,20 @@ const ShopCart = () => {
 
         <div className="overflow-hidden flex-1">
           <ul className="flex flex-col h-full overflow-y-auto gap-y-2">
-            {cartItems.map((item, index) => (
-              <li key={index}>
-                <CartItems carts={item} handleRemoveItem={handleRemoveItem} />
-              </li>
-            ))}
+            {cartItems.length == 0 ? (
+              <h1 className="text-base text-center mt-28">Carrinho vazio</h1>
+            ) : (
+              <>
+                {cartItems.map((item, index) => (
+                  <li key={index}>
+                    <CartItems
+                      carts={item}
+                      handleRemoveItem={handleRemoveItem}
+                    />
+                  </li>
+                ))}
+              </>
+            )}
           </ul>
         </div>
 
