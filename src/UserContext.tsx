@@ -1,117 +1,75 @@
-import { ReactNode, createContext, useState } from 'react';
+// import { ReactNode, createContext, useState } from 'react';
 
-type CardsProps = {
-  id: number;
-  imgUrl: string;
-  product: string;
-  price: number;
-};
+// type CardsProps = {
+//   id: number;
+//   imgUrl: string;
+//   product: string;
+//   price: number;
+// };
 
-const cards: CardsProps[] = [
-  {
-    id: 1,
-    imgUrl: '../shirt.svg',
-    product: 'Camisa Beyond the Limits',
-    price: 79.9,
-  },
-  {
-    id: 2,
-    imgUrl: '../shirt2.svg',
-    product: 'Camiseta Explorer',
-    price: 90.0,
-  },
-  {
-    id: 3,
-    imgUrl: '../shirt2.svg',
-    product: 'Camiseta Explorer',
-    price: 90.0,
-  },
-  {
-    id: 4,
-    imgUrl: '../shirt2.svg',
-    product: 'Camiseta Explorer',
-    price: 90.0,
-  },
-  {
-    id: 5,
-    imgUrl: '../shirt.svg',
-    product: 'Camisa Beyond the Limits',
-    price: 62.9,
-  },
-  {
-    id: 6,
-    imgUrl: '../shirt2.svg',
-    product: 'Camiseta Explorer',
-    price: 89.9,
-  },
-];
+// type UserContextProps = {
+//   cartItems: CardsProps[];
+//   setCartItems: React.Dispatch<React.SetStateAction<CardsProps[] | []>>;
 
-type UserContextProps = {
-  cards: CardsProps[];
+//   dataProducts: CardsProps | null;
+//   setDataProducts?: React.Dispatch<React.SetStateAction<CardsProps | null>>;
 
-  cartItems: CardsProps[];
-  setCartItems: React.Dispatch<React.SetStateAction<CardsProps[] | []>>;
+//   openSidebar: boolean;
+//   setOpenSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 
-  dataProducts: CardsProps | null;
-  setDataProducts?: React.Dispatch<React.SetStateAction<CardsProps | null>>;
+//   handleAddItem: (newItem: CardsProps) => void;
 
-  openSidebar: boolean;
-  setOpenSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+//   handleOpenProduct: (product: CardsProps) => void;
+//   handleRemoveItem: (id: number) => void;
+// };
 
-  handleAddItem: (newItem: CardsProps) => void;
+// export const UserContext = createContext<UserContextProps | undefined>(
+//   undefined,
+// );
 
-  handleOpenProduct: (product: CardsProps) => void;
-  handleRemoveItem: (id: number) => void;
-};
+// export const UserProvider = ({ children }: { children: ReactNode }) => {
+//   const [cartItems, setCartItems] = useState<CardsProps[] | []>([]);
+//   const [dataProducts, setDataProducts] = useState<CardsProps | null>(null);
 
-export const UserContext = createContext<UserContextProps | undefined>(
-  undefined
-);
+//   const [openSidebar, setOpenSidebar] = useState(false);
 
-export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [cartItems, setCartItems] = useState<CardsProps[] | []>([]);
-  const [dataProducts, setDataProducts] = useState<CardsProps | null>(null);
+//   const handleAddItem = (newItem: CardsProps) => {
+//     setCartItems([
+//       ...cartItems,
+//       {
+//         id: newItem.id,
+//         imgUrl: newItem.imgUrl,
+//         product: newItem.product,
+//         price: newItem.price,
+//       },
+//     ]);
+//     alert('Item adicionado com Sucesso!');
+//   };
 
-  const [openSidebar, setOpenSidebar] = useState(false);
+//   const handleRemoveItem = (id: number) => {
+//     const newCart = [...cartItems];
+//     const filterCart = newCart.filter((item) => (item.id !== id ? item : null));
+//     setCartItems(filterCart);
+//   };
 
-  const handleAddItem = (newItem: CardsProps) => {
-    setCartItems([
-      ...cartItems,
-      {
-        id: newItem.id,
-        imgUrl: newItem.imgUrl,
-        product: newItem.product,
-        price: newItem.price,
-      },
-    ]);
-    alert('Item adicionado com Sucesso!');
-  };
+//   const handleOpenProduct = (product: CardsProps) => {
+//     setDataProducts(product);
+//   };
 
-  const handleRemoveItem = (id: number) => {
-    const newCart = [...cartItems];
-    const filterCart = newCart.filter((item) => (item.id !== id ? item : null));
-    setCartItems(filterCart);
-  };
+//   const value = {
+//     cartItems,
+//     setCartItems,
 
-  const handleOpenProduct = (product: CardsProps) => {
-    setDataProducts(product);
-  };
+//     dataProducts,
 
-  const value = {
-    cartItems,
-    setCartItems,
+//     openSidebar,
+//     setOpenSidebar,
 
-    dataProducts,
+//     handleAddItem,
 
-    openSidebar,
-    setOpenSidebar,
+//     handleOpenProduct,
+//     handleRemoveItem,
+//   };
 
-    cards,
-    handleAddItem,
-
-    handleOpenProduct,
-    handleRemoveItem,
-  };
-
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
-};
+//   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+// };

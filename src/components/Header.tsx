@@ -1,14 +1,17 @@
 import { Handbag } from '@phosphor-icons/react';
-import { useContext } from 'react';
-import { UserContext } from '../UserContext';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { selectProductsCount } from '../redux/cart/cart-selectors';
+import { useState } from 'react';
+import Cart from './cart/Cart';
 
 const Header = () => {
-  const context = useContext(UserContext);
+  const [cartIsVisible, setCartIsVisible] = useState(false);
+  const productsCount = useSelector(selectProductsCount);
 
-  const { openSidebar, setOpenSidebar, cartItems } = context!;
-
-  const qtd = cartItems.length;
+  const handleClickOpenSidebar = () => {
+    setCartIsVisible(true);
+  };
 
   return (
     <nav className="border-b border-elements-color py-4 px-16">
@@ -19,7 +22,7 @@ const Header = () => {
 
         <div className="relative">
           <button
-            onClick={() => setOpenSidebar(!openSidebar)}
+            onClick={handleClickOpenSidebar}
             type="button"
             className="bg-black/40 p-2 rounded-md"
           >
@@ -27,10 +30,11 @@ const Header = () => {
           </button>
 
           <span className="text-white text-base bg-primary-color rounded-full py-[1px] px-[8px] absolute -top-2 -right-3">
-            {qtd}
+            {productsCount}
           </span>
         </div>
       </div>
+      <Cart isVisible={cartIsVisible} setIsVisible={setCartIsVisible} />
     </nav>
   );
 };

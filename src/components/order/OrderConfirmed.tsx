@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 
 const OrderConfirmed = () => {
-  const location = useLocation();
-  const { qtd } = location.state;
+  // const location = useLocation();
+  // const { qtd } = location.state;
 
   return (
     <section className="px-10">
@@ -12,8 +12,9 @@ const OrderConfirmed = () => {
         </h1>
 
         <p className="font-normal text-2xl text-center text-text-color mb-20">
-          Uhuul, {qtd == 1 ? `${qtd} camiseta` : `${qtd} camisetas`} está a
-          caminho da sua casa.
+          Uhuul,
+          {/* {qtd == 1 ? `${qtd} camiseta` : `${qtd} camisetas`}  */}
+          está a caminho da sua casa.
         </p>
 
         <Link

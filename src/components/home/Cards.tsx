@@ -1,13 +1,10 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
-import { UserContext } from '../../UserContext';
 import Card from './Card';
+import { cards } from '../../data/products';
 
-const SectionCards = () => {
+const Cards = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const context = useContext(UserContext);
-
-  const { cards } = context!;
 
   const prevSlide = () => {
     if (currentIndex > 0) {
@@ -39,14 +36,9 @@ const SectionCards = () => {
           className="flex flex-row gap-6 transition-transform"
           style={cardStyle}
         >
-          {cards.map((card) => (
-            <li key={card.id} className="flex items-center justify-center ">
-              <Card
-                id={card.id}
-                imgUrl={card.imgUrl}
-                product={card.product}
-                price={card.price}
-              />
+          {cards.map((product) => (
+            <li key={product.id} className="flex items-center justify-center ">
+              <Card product={product} />
             </li>
           ))}
         </ul>
@@ -78,4 +70,4 @@ const SectionCards = () => {
   );
 };
 
-export default SectionCards;
+export default Cards;
