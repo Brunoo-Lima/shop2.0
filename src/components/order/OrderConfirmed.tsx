@@ -1,9 +1,8 @@
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { selectProductsCount } from '../../redux/cart/cart-selectors';
+import { Link, useLocation } from 'react-router-dom';
 
 const OrderConfirmed = () => {
-  const productCount = useSelector(selectProductsCount);
+  const location = useLocation();
+  const quantityPurchased = location.state?.quantityPurchased || 0;
 
   return (
     <section className="px-10">
@@ -13,11 +12,11 @@ const OrderConfirmed = () => {
         </h1>
 
         <p className="font-normal text-2xl text-center text-text-color mb-20">
-          Uhuul,
+          Uhuul,{' '}
           <span className="font-semibold text-white">
-            {productCount == 1
-              ? `${productCount} camiseta `
-              : `${productCount} camisetas `}
+            {quantityPurchased === 1
+              ? `${quantityPurchased} camiseta `
+              : `${quantityPurchased} camisetas `}
           </span>
           está a caminho da sua casa.
         </p>

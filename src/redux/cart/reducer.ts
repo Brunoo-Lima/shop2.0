@@ -48,6 +48,12 @@ const cartReducer = (state = initialState, action: Action) => {
         ),
       };
 
+    case cartActionTypes.CLEAR_CART:
+      return {
+        ...state,
+        products: [],
+      };
+
     case cartActionTypes.INCREASE_PRODUCT_QUANTITY:
       return {
         ...state,

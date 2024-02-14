@@ -8,6 +8,8 @@ import {
   selectProductsTotalPrice,
 } from '../../redux/cart/cart-selectors';
 import { CartState } from '../../redux/cart/reducer';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../../redux/cart/actions';
 
 type CartProps = {
   isVisible: boolean;
@@ -16,6 +18,7 @@ type CartProps = {
 
 const Cart = ({ isVisible, setIsVisible }: CartProps) => {
   const handleEscapeAreaClick = () => setIsVisible(false);
+  const dispatch = useDispatch();
   const { products } = useSelector(
     (state: { cartReducer: CartState }) => state.cartReducer,
   );
@@ -26,7 +29,9 @@ const Cart = ({ isVisible, setIsVisible }: CartProps) => {
     if (products.length === 0) {
       alert('Carrinho vazio');
     } else {
-      navigate('/order/');
+      const quantityPurchased = productsCount;
+      navigate('/order/', { state: { quantityPurchased } });
+      dispatch(clearCart());
     }
   };
 
