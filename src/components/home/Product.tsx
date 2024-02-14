@@ -1,18 +1,18 @@
 import { FormatCurrency } from '../utilities/FormatCurrency';
 
-import { cards } from '../../data/products';
 import { useDispatch } from 'react-redux';
 import { addProductToCart } from '../../redux/cart/actions';
+
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import rootReducer from '../../redux/root-reducer';
 import { ProductState } from '../../redux/product/reducer';
 
 const Product = () => {
+  const id = useParams();
   const dispatch = useDispatch();
-
-  // const { product } = useSelector(
-  //   (state: { productReducer: ProductState }) => state.productReducer,
-  // );
+  const product = useSelector(
+    (state: { ProductReducer: ProductState }) => state.ProductReducer,
+  );
 
   const handleClickProductToCart = () => {
     dispatch(addProductToCart(product));
@@ -22,7 +22,7 @@ const Product = () => {
     <section className="py-5">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
         <img
-          src={cards[0].imgUrl}
+          src={product.imgUrl}
           alt="Imagem do produto"
           width={576}
           height={656}
@@ -30,10 +30,10 @@ const Product = () => {
 
         <div className="p-8 flex flex-col">
           <h1 className="text-4xl font-semibold text-title-color mb-4">
-            {cards[0].product}
+            {product.product}
           </h1>
           <p className="text-primary-color font-semibold text-2xl mb-6">
-            {FormatCurrency(cards[0].price)}
+            {FormatCurrency(product.price)}
           </p>
 
           <div className="flex-1 space-y-6 w-[520px] h-[174px]">

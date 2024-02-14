@@ -1,20 +1,20 @@
 import productActionTypes from './action-types';
 
-// export type ProductItem = {
-//   id: number;
-//   imgUrl: string;
-//   product: string;
-//   price: number;
-// };
-
 export type ProductState = {
-  product: number | null;
+  id: number;
+  imgUrl: string;
+  product: string;
+  price: number;
 };
 
 const initialState: ProductState = {
-  product: null,
+  id: 0,
+  imgUrl: '',
+  product: '',
+  price: 0,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Action = { type: string; payload: any };
 
 const ProductReducer = (state = initialState, action: Action) => {
@@ -22,7 +22,7 @@ const ProductReducer = (state = initialState, action: Action) => {
     case productActionTypes.SELECT_PRODUCT:
       return {
         ...state,
-        product: action.payload,
+        ...action.payload,
       };
 
     default:

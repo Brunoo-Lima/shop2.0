@@ -13,7 +13,7 @@ const Card = ({ product }: CardProps) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(selectProduct(product.id));
+    dispatch(selectProduct(product));
   };
 
   const handleClickAddProductToCart = () => {
