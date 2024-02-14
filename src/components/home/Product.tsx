@@ -3,12 +3,10 @@ import { FormatCurrency } from '../utilities/FormatCurrency';
 import { useDispatch } from 'react-redux';
 import { addProductToCart } from '../../redux/cart/actions';
 
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ProductState } from '../../redux/product/reducer';
 
 const Product = () => {
-  const id = useParams();
   const dispatch = useDispatch();
   const product = useSelector(
     (state: { ProductReducer: ProductState }) => state.ProductReducer,

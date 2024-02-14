@@ -20,22 +20,15 @@ const Cart = ({ isVisible, setIsVisible }: CartProps) => {
     (state: { cartReducer: CartState }) => state.cartReducer,
   );
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const valueTotal = cartItems.reduce((acc, item) => item.price + acc, 0);
-  // const qtd = cartItems.length;
-
-  // const handleClick = () => {
-  //   if (cartItems.length == 0) {
-  //     alert('Carrinho de compra vazio!');
-  //   } else {
-  //     navigate('/order/', { state: { qtd } });
-  //     setCartItems([]);
-  //     alert('Compra realizada!');
-  //   }
-  // };
-
-  const handleClick = () => {};
+  const handleClick = () => {
+    if (products.length === 0) {
+      alert('Carrinho vazio');
+    } else {
+      navigate('/order/');
+    }
+  };
 
   const handleClickCloseSidebar = () => {
     setIsVisible(false);

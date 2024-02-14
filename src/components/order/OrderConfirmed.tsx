@@ -1,8 +1,9 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { selectProductsCount } from '../../redux/cart/cart-selectors';
 
 const OrderConfirmed = () => {
-  // const location = useLocation();
-  // const { qtd } = location.state;
+  const productCount = useSelector(selectProductsCount);
 
   return (
     <section className="px-10">
@@ -13,7 +14,11 @@ const OrderConfirmed = () => {
 
         <p className="font-normal text-2xl text-center text-text-color mb-20">
           Uhuul,
-          {/* {qtd == 1 ? `${qtd} camiseta` : `${qtd} camisetas`}  */}
+          <span className="font-semibold text-white">
+            {productCount == 1
+              ? `${productCount} camiseta `
+              : `${productCount} camisetas `}
+          </span>
           está a caminho da sua casa.
         </p>
 
