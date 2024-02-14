@@ -17,7 +17,6 @@ type CartProps = {
 };
 
 const Cart = ({ isVisible, setIsVisible }: CartProps) => {
-  const handleEscapeAreaClick = () => setIsVisible(false);
   const dispatch = useDispatch();
   const { products } = useSelector(
     (state: { cartReducer: CartState }) => state.cartReducer,
@@ -32,6 +31,7 @@ const Cart = ({ isVisible, setIsVisible }: CartProps) => {
       const quantityPurchased = productsCount;
       navigate('/order/', { state: { quantityPurchased } });
       dispatch(clearCart());
+      setIsVisible(false);
     }
   };
 
@@ -47,7 +47,6 @@ const Cart = ({ isVisible, setIsVisible }: CartProps) => {
       className={`${isVisible ? 'fixed' : 'hidden'}
       } w-full max-w-[25rem] h-screen top-0 right-0 z-30 bg-elements-color transition-transform duration-500`}
     >
-      <div onClick={handleEscapeAreaClick} className="w-full" />
       <div className="pt-20 px-10 flex flex-col h-full">
         <button
           onClick={handleClickCloseSidebar}
