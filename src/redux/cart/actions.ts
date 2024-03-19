@@ -1,6 +1,13 @@
 import cartActionTypes from './action-types';
 
-export const addProductToCart = (payload: []) => ({
+type Product = {
+  id: number;
+  imgUrl: string;
+  product: string;
+  price: number;
+};
+
+export const addProductToCart = (payload: Product) => ({
   type: cartActionTypes.ADD_PRODUCT,
   payload,
 });

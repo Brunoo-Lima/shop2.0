@@ -1,6 +1,6 @@
 # Projeto Ignite shop - MINHA VERSÃO
 
-Layout da Rocketseat de um projeto chamado Ignite shop, porém, fiz do meu próprio
+Layout criado pela Rocketseat de um projeto chamado Ignite shop, porém, fiz do meu próprio
 jeito. Decidi fazer a minha própria versão e só usei mesmo os estilos e layout como base.
 
 O foco do projeto é colocar os produtos no carrinho, a soma de todos os itens e aumentar ou diminuir a quantidade de produtos no carrinho, e finalizar a compra.

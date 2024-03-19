@@ -19,7 +19,7 @@ type CartProps = {
 const Cart = ({ isVisible, setIsVisible }: CartProps) => {
   const dispatch = useDispatch();
   const { products } = useSelector(
-    (state: { cartReducer: CartState }) => state.cartReducer,
+    (state: { cartReducer: CartState }) => state.cartReducer
   );
 
   const navigate = useNavigate();

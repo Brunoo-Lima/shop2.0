@@ -1,7 +1,7 @@
 import productActionTypes from './action-types';
-import { ProductItem } from './reducer';
+import { ProductState } from './reducer';
 
-export const selectProduct = (payload: ProductItem) => ({
+export const selectProduct = (payload: ProductState) => ({
   type: productActionTypes.SELECT_PRODUCT,
   payload,
 });
