@@ -7,18 +7,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
 const Cards = () => {
   return (
-    <div className="pt-16 container">
+    <div className="py-16 container">
       <h1 className="text-title-color text-center text-3xl font-semibold mb-4">
         Escolha um produto
       </h1>
 
-      <ul className="flex flex-row gap-6">
+      <ul>
         <Swiper
           effect={'coverflow'}
           grabCursor={true}
@@ -37,25 +36,34 @@ const Cards = () => {
             prevEl: '.swiper-button-prev',
           }}
           modules={[EffectCoverflow, Pagination, Navigation]}
-          className="h-[32rem] py-8 relative"
+          className="pb-20 relative"
         >
           {cards.map((product) => (
-            <SwiperSlide className="w-[37rem] relative">
-              <li key={product.id} className="flex flex-row justify-center">
+            <SwiperSlide key={product.id} className="w-[400px] relative">
+              <li className="flex flex-row justify-center">
                 <Card product={product} />
               </li>
             </SwiperSlide>
           ))}
 
-          <div className="relative flex items-center justify-center slider-controler">
-            <div className="md:left-[43%] left-[38%] transform md:translate-x-[-58%] translate-x-[-80%] bg-white p-6 rounded-full swiper-button-prev">
-              <CaretLeft size={8} />
-            </div>
-            <div className="md:left-[53%] left-[50%] transform md:translate-x-[58%] translate-x-[80%] bg-white p-6 rounded-full swiper-button-next">
-              <CaretRight size={8} />
-            </div>
+          <div className="relative -bottom-10 flex items-center justify-center slider-controler">
+            <div className="flex items-center">
+              <div className="transform md:translate-x-[-58%] translate-x-[-80%] -translate-y-1 cursor-pointer  swiper-button-prev">
+                <CaretLeft
+                  size={16}
+                  className="size-8 bg-white hover:bg-slate-400 rounded-full"
+                />
+              </div>
 
-            <div className="relative w-[15rem] px-2 bottom-0 swiper-pagination"></div>
+              <div className="relative w-[15rem] -bottom-6 swiper-pagination"></div>
+
+              <div className="transform md:translate-x-[58%] translate-x-[80%] -translate-y-1 cursor-pointer swiper-button-next">
+                <CaretRight
+                  size={16}
+                  className="bg-white hover:bg-slate-400 rounded-full size-8"
+                />
+              </div>
+            </div>
           </div>
         </Swiper>
       </ul>
