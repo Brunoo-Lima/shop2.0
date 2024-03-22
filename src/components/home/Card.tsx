@@ -22,7 +22,7 @@ const Card = ({ product }: CardProps) => {
 
   return (
     <div
-      className="w-[400px] h-[400px] relative rounded-md"
+      className="w-[350px] h-[350px] md:w-[400px] md:h-[400px] relative rounded-md"
       style={{
         background: `url(${product.imgUrl})`,
         backgroundSize: 'cover',

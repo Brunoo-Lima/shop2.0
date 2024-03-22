@@ -39,7 +39,10 @@ const Cards = () => {
           className="pb-20 relative"
         >
           {cards.map((product) => (
-            <SwiperSlide key={product.id} className="w-[400px] relative">
+            <SwiperSlide
+              key={product.id}
+              className="w-[300px] md:w-[400px] relative"
+            >
               <li className="flex flex-row justify-center">
                 <Card product={product} />
               </li>
@@ -51,7 +54,7 @@ const Cards = () => {
               <div className="transform md:translate-x-[-58%] translate-x-[-80%] -translate-y-1 cursor-pointer  swiper-button-prev">
                 <CaretLeft
                   size={16}
-                  className="size-8 bg-white hover:bg-slate-400 rounded-full"
+                  className="bg-white hover:bg-blue-600 text-blue-500 hover:text-white transition duration-300 size-8 rounded-full"
                 />
               </div>
 
@@ -60,7 +63,7 @@ const Cards = () => {
               <div className="transform md:translate-x-[58%] translate-x-[80%] -translate-y-1 cursor-pointer swiper-button-next">
                 <CaretRight
                   size={16}
-                  className="bg-white hover:bg-slate-400 rounded-full size-8"
+                  className="bg-white hover:bg-blue-600 text-blue-500 hover:text-white transition duration-300 rounded-full size-8"
                 />
               </div>
             </div>
